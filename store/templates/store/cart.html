@@ -1,0 +1,9 @@
+<h2>Your Cart</h2>
+<ul>
+  {% for item in cart_items %}
+    <li>{{ item.book.title }} x{{ item.quantity }}</li>
+  {% empty %}
+    <li>No items in cart</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'book_list' %}">Back to Books</a>
