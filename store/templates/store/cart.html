@@ -1,9 +1,79 @@
-<h2>Your Cart</h2>
-<ul>
-  {% for item in cart_items %}
-    <li>{{ item.book.title }} x{{ item.quantity }}</li>
-  {% empty %}
-    <li>No items in cart</li>
-  {% endfor %}
-</ul>
-<a href="{% url 'book_list' %}">Back to Books</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .cart-container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .cart-header {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+        }
+
+        .nav-links {
+            margin-bottom: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cart-container">
+    <h1 class="cart-header text-center">Your Cart</h1>
+
+    <div class="nav-links text-center">
+        <a href="{% url 'book_list' %}">← Back to Book List</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    {% if cart_items %}
+        <ul class="list-unstyled">
+            {% for item in cart_items %}
+                <li class="cart-item">
+                    <strong>{{ item.book.title }}</strong><br>
+                    Quantity: {{ item.quantity }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center">Your cart is empty.</p>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

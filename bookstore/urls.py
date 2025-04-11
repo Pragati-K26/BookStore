@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from store import views  # Make sure to import your views
-
+from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.book_list, name='book_list'),  # Add this line to map URL to your book list view
+    path('', views.book_list, name='book_list'),
+    path('', include('store.urls')),  # Add this line to map URL to your book list view
 ]
