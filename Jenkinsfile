@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/Pragati-K26/Bookstore.git'
+                git branch: 'main', url: 'https://github.com/Pragati-K26/Bookstore.git'
             }
         }
 
